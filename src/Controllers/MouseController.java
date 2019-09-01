@@ -22,7 +22,6 @@ public class MouseController implements java.awt.event.MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        printPosition();
         setPressed();
     }
 
