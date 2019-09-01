@@ -2,16 +2,15 @@ package Service.Helpers;
 
 import javax.swing.*;
 
-public class MenuHelper {
-    //TODO:: more options in menubar, add functionality
+public class MenuBarHelper {
+    //TODO:: more options in menubar, add functionality to menuItems
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem save;
     private JMenuItem open;
     private JMenuItem exit;
 
-    public MenuHelper(JMenuBar menuBar){
-        this.menuBar = menuBar;
+    public MenuBarHelper(){
         init();
     }
 
@@ -20,9 +19,11 @@ public class MenuHelper {
     }
 
     private void init(){
+        menuBar = new JMenuBar();
+
         menu = new JMenu("file");
 
-        save = new JMenuItem("file");
+        save = new JMenuItem("save");
         open = new JMenuItem("open");
         exit = new JMenuItem("exit");
         menu.add(save);
