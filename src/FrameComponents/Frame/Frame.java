@@ -1,9 +1,11 @@
 package FrameComponents.Frame;
 
 import Controllers.MouseController;
-import Service.Helpers.ContainerManager;
-import Service.ImageService;
-import Service.LayoutService;
+import Service.Helpers.ButtonHelper;
+import Service.Helpers.MouseHelper;
+import Service.Managment.ContainerManager;
+import Service.Managment.ImageManager;
+import Service.Managment.LayoutManager;
 import Service.Functionalities.MainMenu.MainMenu;
 import Service.State.State;
 
@@ -12,21 +14,31 @@ import java.awt.*;
 
 
 public class Frame extends JFrame {
-    //TODO:: Add "add text area" button
+    /*
+    Frame class stores data needed to move between cards(functionalities) in apps
 
+        maybes:
+        -not sure about preinitializing classes with constructor arguments
+     */
+
+    //TODO::MouseHelper class, needs buttonHelper
     private final Dimension frameSize = new Dimension(800,800);
 
     private ContainerManager containerManager;
-
+    private JPanel baseContainer;
     private Canvas canvas;
+
+    private ButtonHelper buttonHelper = new ButtonHelper();
+
+    private MouseHelper mouseHelper = new MouseHelper(buttonHelper);
 
     private MainMenu mainMenu;
 
     private MouseController mouseController;
 
-    private ImageService imageService = new ImageService();
+    private ImageManager imageManager = new ImageManager();
 
-    private LayoutService layoutService;
+    private LayoutManager layoutManager;
 
     public Frame(){
         initContainerHelper();
@@ -34,46 +46,40 @@ public class Frame extends JFrame {
         initMainMenu();
         initFrame();
         initMouseListener();
-        createLayoutService();
+        createLayoutManager();
     }
-    public void render(Graphics2D g){
+
+    public void render(Graphics g){
         if(State.state == State.mainMenu){
             renderBackground(g);
-            mainMenu.render(g);
+            buttonHelper.render(g);
         }
     }
-    private void renderBackground(Graphics2D g){
-        g.setColor(imageService.getBackgroundColor());
+
+    private void renderBackground(Graphics g){
+        g.setColor(imageManager.getBackgroundColor());
         g.fillRect(canvas.getX(),canvas.getY(),canvas.getWidth(),canvas.getHeight());
     }
+    //TODO:: create ButtonHelper
 
     public void update(){
-
-        System.out.println(containerManager.getBaseContainer().getLayout());
-        if(State.state == State.mainMenu){
-            checkMousePress();
-            mainMenu.update();
-        }
+//        System.out.println(containerManager.getBaseContainer().getLayout());
+        mouseHelper.update();
+        buttonHelper.update();
     }
 
-    private void checkMousePress(){
-        if(MouseController.mousePressed) {
-            mainMenu.mousePress();
-        }
-        //TODO:: Tempo Detector state
-        //TODO:: Calculator state
+    private void createLayoutManager(){
+        layoutManager = new LayoutManager(containerManager);
     }
 
-    private void createLayoutService(){
-        layoutService = new LayoutService(containerManager);
-    }
     private void initContainerHelper() {
         containerManager = new ContainerManager();
-        this.add(containerManager.getBaseContainer());
+        setBaseContainer();
     }
+
     private void initCanvas() {
         canvas = new Canvas();
-//        container.add(canvas);
+//        baseContainer.add(canvas);
         this.add(canvas);
     }
 
@@ -98,8 +104,13 @@ public class Frame extends JFrame {
         canvas.addMouseListener(mouseController);
     }
 
+    private void setBaseContainer(){
+        baseContainer = containerManager.getBaseContainer();
+    }
+
     public Canvas getCanvas(){
         return canvas;
     }
+
     public MainMenu getMainMenu(){ return mainMenu; }
 }
