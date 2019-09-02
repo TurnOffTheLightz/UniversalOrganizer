@@ -22,7 +22,6 @@ public class Service {
 
 
     public Service(){
-
         init();
     }
 
