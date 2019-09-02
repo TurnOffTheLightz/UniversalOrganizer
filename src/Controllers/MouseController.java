@@ -8,6 +8,7 @@ public class MouseController implements java.awt.event.MouseListener {
     public static int mousePressX;
     public static int mousePressY;
     public static boolean mousePressed = false;
+    public static boolean mouseReleased = false;
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -16,13 +17,15 @@ public class MouseController implements java.awt.event.MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         setPressed();
+
         savePosition(e);
+
         printPosition();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        setPressed();
+        setReleased();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class MouseController implements java.awt.event.MouseListener {
     private void setPressed(){
         mousePressed = !mousePressed;
     }
+    private void setReleased() { mouseReleased = !mouseReleased; }
 
     private void savePosition(MouseEvent e){
         mousePressX = e.getX();
