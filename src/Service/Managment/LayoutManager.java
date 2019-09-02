@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LayoutManager {
-
     private JPanel baseContainer;
     private ContainerManager containerManager;
 

@@ -3,7 +3,6 @@ package Service.Managment;
 import java.awt.*;
 
 public class ImageManager {
-
     /*
 
     //TODO:: ImageManager contains information about images and their paths, add them

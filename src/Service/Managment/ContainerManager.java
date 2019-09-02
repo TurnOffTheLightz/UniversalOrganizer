@@ -3,7 +3,6 @@ package Service.Managment;
 import javax.swing.*;
 
 public class ContainerManager {
-
     private JPanel baseContainer;
     private JPanel mainMenuContainer;
 
