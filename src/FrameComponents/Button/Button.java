@@ -1,6 +1,7 @@
 package FrameComponents.Button;
 
 import Controllers.MouseController;
+import Service.State.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -33,9 +34,8 @@ public class Button extends java.awt.Button {
 
     private void changeButtonColor(Graphics g){
         if(pressed){
-            g.setColor(new Color(222,80,199));
+            g.setColor(new Color(0,150,0));
             g.fillRect(bounds.x,bounds.y,bounds.width,bounds.height);
-            pressed = false;
         }
     }
 
@@ -70,5 +70,13 @@ public class Button extends java.awt.Button {
 
     public void update() {
 
+    }
+
+    public State getState(){
+        if(text.equals("main-menu")) return State.mainMenu;
+        if(text.equals("tempo-detector")) return State.tempoDetector;
+        if(text.equals("block-diagram")) return State.blockDiagram;
+        if(text.equals("calculator")) return State.calculator;
+        return null;
     }
 }
