@@ -6,6 +6,7 @@ import javax.swing.*;
 
 public class MainMenu {
 
+
     private MenuBarHelper menuBarHelper;
 
     public MainMenu(){
