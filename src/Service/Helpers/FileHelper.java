@@ -13,6 +13,7 @@ public class FileHelper {
 
     private final String contentFolderPath = getAbsolutePath() + "/Universal Organizer Files";
 
+    //TODO:: consider ArrayList of Files instead of single File objects
     //folders
     private File contentFolder = new File(contentFolderPath);
     private File tempoDetectorFolder = new File(contentFolderPath + "/Tempo-Detector");
@@ -28,7 +29,6 @@ public class FileHelper {
 
     public FileHelper(){
         dateHelper = new DateHelper();
-        checkConfigFiles();
     }
     private String getAbsolutePath(){
         Path currentRelativePath = Paths.get("");
@@ -38,12 +38,7 @@ public class FileHelper {
         return System.getProperty("user.dir");
          */
     }
-
-    private void checkConfigFiles(){
-        checkFolders();
-        checkTextFiles();
-    }
-    private void checkFolders(){
+    public void checkFolders(){
         if(!contentFolder.exists()){
             createFolder(contentFolder);
         }
@@ -54,7 +49,7 @@ public class FileHelper {
             createFolder(blockDiagram);
         }
     }
-    private void checkTextFiles(){
+    public void checkTextFiles(){
         if(!organizerConfig.exists()){
             createTextFile(organizerConfig);
         }
