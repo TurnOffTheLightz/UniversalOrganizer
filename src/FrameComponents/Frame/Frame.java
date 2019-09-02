@@ -14,6 +14,7 @@ import java.awt.*;
 
 
 public class Frame extends JFrame {
+
     /*
     Frame class stores data needed to move between cards(functionalities) in apps
 
