@@ -3,7 +3,6 @@ package Service.Prerequisites;
 import Service.Helpers.FileHelper;
 
 public class Prerequisites{
-
     private FileHelper fileHelper;
 
     public Prerequisites(){
