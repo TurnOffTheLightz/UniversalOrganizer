@@ -51,7 +51,7 @@ public class MainThread implements Runnable{
 
         void reset(){
             if(System.currentTimeMillis()-timer>1000){
-                System.out.println("FPS: " + frames + ",\t updates: " + updates);
+//                System.out.println("FPS: " + frames + ",\t updates: " + updates);
                 timer+=1000;
                 frames=0;
                 updates=0;

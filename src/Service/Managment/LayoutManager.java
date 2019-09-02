@@ -1,33 +1,36 @@
-package Service;
+package Service.Managment;
 
 import Controllers.MouseController;
 import FrameComponents.Button.Button;
-import Service.Helpers.ContainerManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LayoutService {
+public class LayoutManager {
 
     private JPanel baseContainer;
     private ContainerManager containerManager;
 
     //TODO:: add more containers
+    //TODO:: setLayout in Frame baseContainer
 
 
     private CardLayout cardLayout = new CardLayout();
 
-    public LayoutService(ContainerManager containerManager){
+    public LayoutManager(ContainerManager containerManager){
         this.containerManager = containerManager;
+        setBaseContainer();
         setCardLayout();
     }
 
 
     private void setCardLayout(){
-        baseContainer.setLayout(cardLayout);
         changeContainerBackGroundColor();
+    }
 
+    private void setBaseContainer(){
+        this.baseContainer = containerManager.getBaseContainer();
     }
 
     private void changeContainerBackGroundColor(){
@@ -38,6 +41,7 @@ public class LayoutService {
         for(Button b : buttonList){
             if(b.pressed()){
                 //TODO:: add card layout and start proper functionality
+                //TODO:: check which button was pressed
             }
         }
     }

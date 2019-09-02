@@ -1,0 +1,6 @@
+*.swp
+cmake-build-debug
+compileAndRun\.sh
+.idea
+.vs
+plan.txt
