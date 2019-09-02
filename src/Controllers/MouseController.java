@@ -11,7 +11,6 @@ public class MouseController implements java.awt.event.MouseListener {
     public static boolean mouseReleased = false;
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
