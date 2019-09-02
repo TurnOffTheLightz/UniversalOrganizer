@@ -1,12 +1,12 @@
-package Service;
+package Service.Managment;
 
 import java.awt.*;
 
-public class ImageService {
+public class ImageManager {
 
     /*
 
-    //TODO:: ImageService contains information about images and their paths
+    //TODO:: ImageManager contains information about images and their paths, add them
     now just colors
 
      */

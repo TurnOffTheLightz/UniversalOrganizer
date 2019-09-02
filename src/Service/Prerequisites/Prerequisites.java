@@ -2,13 +2,18 @@ package Service.Prerequisites;
 
 import Service.Helpers.FileHelper;
 
-public class Prerequisites {
+public class Prerequisites{
 
-    public FileHelper fileHelper;
+    private FileHelper fileHelper;
 
     public Prerequisites(){
+
         fileHelper = new FileHelper();
+        checkConfigFiles();
     }
 
-
+    private void checkConfigFiles(){
+        fileHelper.checkFolders();
+        fileHelper.checkTextFiles();
+    }
 }

@@ -16,11 +16,9 @@ public class Service {
 
     private Thread thread;
 
-    private Prerequisites prerequisites;
+    private Prerequisites prerequisites = new Prerequisites();
 
     private Canvas frameCanvas;
-    private BufferStrategy bs;
-    private Graphics2D g;
 
 
     public Service(){
@@ -30,12 +28,12 @@ public class Service {
 
 
     public void render(){
-        bs = frameCanvas.getBufferStrategy();
-        if(bs==null){
+        BufferStrategy bs = frameCanvas.getBufferStrategy();
+        if(bs ==null){
             frameCanvas.createBufferStrategy(3);
             return;
         }
-        g = (Graphics2D) bs.getDrawGraphics();
+        Graphics g = bs.getDrawGraphics();
 
         frame.render(g);
 
@@ -59,14 +57,10 @@ public class Service {
         running = true;
 
         createFrame();
-        createPrerequisites();
         setFrameCanvas();
     }
     private void createFrame(){
         frame = new Frame();
-    }
-    private void createPrerequisites(){
-        prerequisites = new Prerequisites();
     }
     private void setFrameCanvas(){
         frameCanvas = frame.getCanvas();
