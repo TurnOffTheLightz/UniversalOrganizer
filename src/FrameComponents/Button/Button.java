@@ -1,6 +1,5 @@
 package FrameComponents.Button;
 
-import Controllers.MouseController;
 import Service.State.State;
 
 import java.awt.*;
