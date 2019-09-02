@@ -3,7 +3,6 @@ package Service.MainThread;
 import Service.Service;
 
 public class MainThread implements Runnable{
-
     private Service service;
     private TickHelper tickHelper;
 
