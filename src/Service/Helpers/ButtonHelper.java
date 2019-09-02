@@ -7,8 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ButtonHelper {
-
-    //TODO:: separate group of buttons to proper functionality
+    //TODO:: separate group of buttons for proper functionality
 
     private final int mainMenuButtonSize = 400;
     private final Rectangle tempoDetectorBounds = new Rectangle(0,0,mainMenuButtonSize,mainMenuButtonSize);

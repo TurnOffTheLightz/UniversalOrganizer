@@ -6,7 +6,8 @@ import Service.State.State;
 
 public class MouseHelper {
 
-    ButtonHelper buttonHelper;
+
+    private ButtonHelper buttonHelper;
 
     public MouseHelper(ButtonHelper buttonHelper){
         this.buttonHelper = buttonHelper;

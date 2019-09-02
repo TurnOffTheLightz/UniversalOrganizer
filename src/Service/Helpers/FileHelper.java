@@ -13,6 +13,7 @@ public class FileHelper {
 
     private final String contentFolderPath = getAbsolutePath() + "/Universal Organizer Files";
 
+
     //TODO:: consider ArrayList of Files instead of single File objects
     //folders
     private File contentFolder = new File(contentFolderPath);
