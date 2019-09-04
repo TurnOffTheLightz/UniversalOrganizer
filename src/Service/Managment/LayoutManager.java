@@ -1,56 +1,60 @@
 package Service.Managment;
 
-import Controllers.MouseController;
-import FrameComponents.Button.Button;
-
-import javax.swing.*;
+import Service.State.State;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class LayoutManager {
-    private JPanel baseContainer;
+    //TODO:: set GridBagLayout for calculatorContainter
+
     private ContainerManager containerManager;
-
-    //TODO:: add more containers
-    //TODO:: setLayout in Frame baseContainer
-
 
     private CardLayout cardLayout = new CardLayout();
 
     public LayoutManager(ContainerManager containerManager){
         this.containerManager = containerManager;
-        setBaseContainer();
-        setCardLayout();
+        setContainerLayouts();
+        swapCard("main-menu");
     }
 
-
-    private void setCardLayout(){
-        changeContainerBackGroundColor();
+    public void swapCard(String swapTo){
+        cardLayout.show(containerManager.getCardContainer(),swapTo);
+        State.setStateFromString(swapTo);
     }
 
-    private void setBaseContainer(){
-        this.baseContainer = containerManager.getBaseContainer();
+    public void addButtons(){
+        addMenuButtons();
     }
 
-    private void changeContainerBackGroundColor(){
-        baseContainer.setBackground(new Color(0,0,100));
+    private void addMenuButtons(){
+        GridBagConstraints gridConstraints = getGridConstraints();
+
+        containerManager.addButtonToMainMenuContainer(containerManager.getButtonManager().getMenuButtons().get(ButtonManager.MAIN_MENU),gridConstraints);
+        gridConstraints.gridy = 1;
+        containerManager.addButtonToMainMenuContainer(containerManager.getButtonManager().getMenuButtons().get(ButtonManager.CALCULATOR),gridConstraints);//calculator
+        gridConstraints.gridy = 2;
+        containerManager.addButtonToMainMenuContainer(containerManager.getButtonManager().getMenuButtons().get(ButtonManager.TEMPO_DETECTOR),gridConstraints);//tempo detector
+        gridConstraints.gridy = 3;
+        containerManager.addButtonToMainMenuContainer(containerManager.getButtonManager().getMenuButtons().get(ButtonManager.BLOCK_DIAGRAM),gridConstraints);//block diagram
     }
 
-    public static void pressButton(ArrayList<Button> buttonList){
-        for(Button b : buttonList){
-            if(b.pressed()){
-                //TODO:: add card layout and start proper functionality
-                //TODO:: check which button was pressed
-            }
-        }
+    private GridBagConstraints getGridConstraints(){
+        GridBagConstraints gridConstraints = new GridBagConstraints();
+        gridConstraints.ipadx = 0;
+        gridConstraints.ipady = 0;
+        gridConstraints.fill = GridBagConstraints.BOTH;
+        gridConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
+
+        gridConstraints.weightx = 50;
+        gridConstraints.weighty = 100;
+        gridConstraints.insets = new Insets(0,0,0,0);
+        gridConstraints.gridy = 0;
+        return gridConstraints;
     }
-    public static boolean anyButtonPressed(ArrayList<Button> buttonList){
-        for(Button b : buttonList){
-            if(b.getBounds().contains(MouseController.mousePressX, MouseController.mousePressY)){
-                b.setPressed(true);
-                return true;
-            }
-        }
-        return false;
+
+    private void setContainerLayouts(){
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        containerManager.getMenuContainer().setLayout(gridBagLayout);
+        containerManager.getBaseContainer().setLayout(new BorderLayout());
+        containerManager.getCardContainer().setLayout(cardLayout);
     }
 }
