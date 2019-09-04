@@ -1,9 +1,10 @@
 import Service.Service;
 
-public class Main {
+import java.awt.*;
 
+public class Main {
     public static void main(String[] args) {
-        Service service = new Service();
-        service.start();
+
+        EventQueue.invokeLater(() -> new Service().start());
     }
 }
