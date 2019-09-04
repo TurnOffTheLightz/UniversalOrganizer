@@ -1,36 +1,73 @@
 package Service.Managment;
 
+import FrameComponents.Button.Button;
+import FrameComponents.Container.Container;
 import javax.swing.*;
+import java.awt.*;
 
 public class ContainerManager {
-    private JPanel baseContainer;
-    private JPanel mainMenuContainer;
+    //TODO:: bind more containers
+    //TODO:: consider List of JPanels instead of single objects
+    private ButtonManager buttonManager;
 
-    public ContainerManager(){
-        initContainers();
+    private JPanel baseContainer = new Container();
+    private JPanel cardContainer = new Container();
+    private JPanel menuContainer = new Container();
+    private JPanel mainMenuContainer = new Container();
+    private JPanel calculatorContainer = new Container();
+    private JPanel blockDiagramContainer = new Container();
+    private JPanel tempoDetectorContainer = new Container();
+
+
+    public ContainerManager(ButtonManager buttonManager){
+        this.buttonManager = buttonManager;
+        changeContainerColors();
     }
 
-    private void initContainers(){
-        createContainers();
-        bindContainers();
+    //TODO:: maybe paint containers in the future
+    public void render() {
+
     }
 
-    private void createContainers(){
-        baseContainer = new JPanel();
-        mainMenuContainer = new JPanel();
-    }
-    private void bindContainers(){
-        addContainer(baseContainer,mainMenuContainer);
+    public void addContainersToBaseContainer(){
+        baseContainer.add(cardContainer,BorderLayout.CENTER); //current card
+        baseContainer.add(menuContainer,BorderLayout.WEST); //pinned menu
+
+        cardContainer.add(mainMenuContainer,"main-menu");
+        cardContainer.add(calculatorContainer,"calculator");
+        cardContainer.add(tempoDetectorContainer,"tempo-detector");
+        cardContainer.add(blockDiagramContainer,"block-diagram");
     }
 
-    private void addContainer(JPanel destinationPanel, JPanel originPanel){
-        destinationPanel.add(originPanel);
+    void addButtonToMainMenuContainer(Button button, GridBagConstraints gridBagConstraints){
+        menuContainer.add(button,gridBagConstraints);
     }
 
-    public JPanel getBaseContainer(){
+    //TODO:: delete when needed
+    private void changeContainerColors(){
+        menuContainer.setBackground(new Color(255,0,255));
+        mainMenuContainer.setBackground(new Color(100,0,0));
+        calculatorContainer.setBackground(new Color(0,122,0));
+        blockDiagramContainer.setBackground(new Color(11,200,255));
+        tempoDetectorContainer.setBackground(new Color(155,0,0));
+    }
+
+    ButtonManager getButtonManager(){
+        return buttonManager;
+    }
+
+    JPanel getMenuContainer(){ return menuContainer; }
+
+    JPanel getCardContainer(){
+        return cardContainer;
+    }
+
+    public JPanel getBaseContainer() {
         return baseContainer;
     }
-    public JPanel getMainMenuContainer(){
-        return mainMenuContainer;
-    }
+
+    public JPanel getCalculatorContainer() { return calculatorContainer; }
+
+    public JPanel getTempoDetectorContainer() { return tempoDetectorContainer; }
+
 }
