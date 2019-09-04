@@ -24,7 +24,7 @@ public class MainThread implements Runnable{
             tickHelper.reset();
         }
     }
-    private class TickHelper {
+    private static class TickHelper {
         private int frames = 0;
         private long lastTime = System.nanoTime();
         private long timer = System.currentTimeMillis();
