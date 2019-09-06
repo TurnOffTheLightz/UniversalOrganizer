@@ -1,4 +1,4 @@
-package Service.Helpers;
+package FrameComponents.Helpers;
 
 import javax.swing.*;
 

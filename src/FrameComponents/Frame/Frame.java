@@ -1,13 +1,10 @@
 package FrameComponents.Frame;
 
 import Listeners.ActionListener;
-import Service.Helpers.MenuBarHelper;
-import Service.Managment.ButtonManager;
-import Service.Helpers.ActionHelper;
-import Service.Managment.ContainerManager;
+import FrameComponents.Helpers.MenuBarHelper;
+import Service.Managment.ComponentHandler;
+import Service.Managment.CardManager;
 import Service.Managment.ImageManager;
-import Service.Managment.LayoutManager;
-import Service.Functionalities.MainMenu.MainMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,19 +17,24 @@ public class Frame extends JFrame {
         maybes:
         -not sure about preinitializing classes with constructor arguments
      */
+
     private final Dimension frameSize = new Dimension(800,800);
 
-    private ButtonManager buttonManager = new ButtonManager();
+    private CardManager cardManager = new CardManager();
 
-    private ContainerManager containerManager=  new ContainerManager(buttonManager);
+    private ComponentHandler componentHandler = new ComponentHandler(cardManager);
 
-    private LayoutManager layoutManager = new LayoutManager(containerManager);
-
-    private ActionHelper actionHelper = new ActionHelper(layoutManager, buttonManager);
-
-    private ActionListener actionListener = new ActionListener(actionHelper);
+    private ActionListener actionListener = new ActionListener(componentHandler, cardManager);
 
     private MenuBarHelper menuBarHelper = new MenuBarHelper();
+
+    /*
+        functionalities:
+        //TODO:: metronome (metronome/tempoDetector)
+        //TODO:: calculator
+        //TODO:: blockDiagram
+        //TODO:: weekPlanner
+     */
 
     //TODO:: image manager class
     private ImageManager imageManager = new ImageManager();
@@ -40,14 +42,13 @@ public class Frame extends JFrame {
     public Frame(){
         setFrame();
         setMenuBar();
-        addContainers();
-        addButtons();
-        addBaseContainerToFrame();
-        addActionListenerToButtons();
+        //init buttonshere
+        addContainer();
+        addActionListener();
     }
 
     public void render(){
-        containerManager.render();
+
     }
 
     public void update(){
@@ -58,15 +59,14 @@ public class Frame extends JFrame {
         this.setJMenuBar(menuBarHelper.getMenuBar());
     }
 
-    private void addBaseContainerToFrame(){ this.add(containerManager.getBaseContainer()); }
+    //adds the content container to frame
+    private void addContainer(){ this.add(cardManager.getContainer()); }
 
-    private void addButtons(){ layoutManager.addButtons(); }
-
-    private void addContainers(){ containerManager.addContainersToBaseContainer(); }
-
-    private void addActionListenerToButtons(){
-        buttonManager.addActionListener(actionListener);
+    private void addActionListener(){
+        componentHandler.addActionListener(actionListener);
     }
+
+    //TODO::addChangeListener
 
     private void setFrame(){
         this.setTitle("Universal Organizer v0.1");
@@ -74,7 +74,7 @@ public class Frame extends JFrame {
         this.setFocusable(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setVisible(true);
     }
 }
