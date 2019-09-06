@@ -1,14 +1,28 @@
 package Service.State;
 
-public enum State {     mainMenu,calculator,tempoDetector,blockDiagram;
+public enum State {
+
+    mainMenu,calculator, metronome,blockDiagram;
 
     public static State state;
 
     public static void setStateFromString(String string){
-        if(string.equals("main-menu")) state = mainMenu;
-        else if(string.equals("calculator")) state = calculator;
-        else if(string.equals("tempo-detector")) state = tempoDetector;
-        else if(string.equals("block-diagram")) state = blockDiagram;
+        switch (string) {
+            case "main-menu":
+                state = mainMenu;
+                break;
+            case "calculator":
+                state = calculator;
+                break;
+            case "metronome":
+                state = metronome;
+                break;
+            case "block-diagram":
+                state = blockDiagram;
+                break;
+            default:
+                break;
+        }
      }
 
     public static boolean mainMenuOpen(){ return state == mainMenu; }
@@ -17,8 +31,8 @@ public enum State {     mainMenu,calculator,tempoDetector,blockDiagram;
         return state == calculator;
     }
 
-    public static boolean tempoDetectorOpen(){
-        return state == tempoDetector;
+    public static boolean metronomeOpen(){
+        return state == metronome;
     }
 
     public static boolean blockDiagramOpen(){
