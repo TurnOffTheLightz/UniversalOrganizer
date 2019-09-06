@@ -1,4 +1,4 @@
-package Service.Functionalities.MainMenu;
+package FrameComponents.Functionalities.MainMenu;
 
 
 public class MainMenu {

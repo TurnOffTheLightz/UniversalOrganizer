@@ -4,65 +4,37 @@ import FrameComponents.Frame.Frame;
 import Service.MainThread.MainThread;
 import Service.Prerequisites.Prerequisites;
 
-import java.awt.*;
-import java.awt.image.BufferStrategy;
-
 
 public class Service {
+
     public boolean running = false;
-    private boolean exit = false;
+    public static boolean exit = false; //TODO:: action listener will exit when needed
+    private Thread thread;
 
     private Frame frame;
 
-    private Thread thread;
-
     private Prerequisites prerequisites = new Prerequisites();
-
-    private Canvas frameCanvas;
-
 
     public Service(){
         init();
     }
 
-
     public void render(){
-        BufferStrategy bs = frameCanvas.getBufferStrategy();
-        if(bs ==null){
-            frameCanvas.createBufferStrategy(3);
-            return;
-        }
-        Graphics g = bs.getDrawGraphics();
-
-        frame.render(g);
-
-        g.dispose();
-        bs.show();
+        frame.render();
     }
 
-
-    //TODO:: update method will check mouse action and react as we want
     public void update(){
-        updateFrameCanvas();
         frame.update();
 
         checkExit();
     }
-    private void updateFrameCanvas(){
-        frameCanvas = frame.getCanvas();
-    }
 
     private void init(){
-        running = true;
-
         createFrame();
-        setFrameCanvas();
+        running = true;
     }
     private void createFrame(){
         frame = new Frame();
-    }
-    private void setFrameCanvas(){
-        frameCanvas = frame.getCanvas();
     }
 
     public synchronized void start(){
@@ -86,4 +58,5 @@ public class Service {
             System.exit(0);
         }
     }
+
 }
