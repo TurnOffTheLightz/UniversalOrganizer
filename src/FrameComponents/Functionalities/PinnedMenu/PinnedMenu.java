@@ -2,7 +2,6 @@ package FrameComponents.Functionalities.PinnedMenu;
 
 import FrameComponents.Button.Button;
 import FrameComponents.Functionalities.Functionality;
-import Service.Managment.ComponentHandler;
 
 import java.awt.*;
 
@@ -14,11 +13,13 @@ public class PinnedMenu extends Functionality {
 
             protected ArrayList<Button> buttons;
 
+            protected ArrayList<JComponent> components = new ArrayList<>();
+
             protected LayoutHelper layoutHelper = new LayoutHelper();
      */
-
-    //just for pinned menu
-
+    // if new button added, do:
+            //->initComponents()
+            //->layoutHelper.addPinnedMenuComponents(container,components)
 
     public PinnedMenu(){
         initComponents();
@@ -30,19 +31,14 @@ public class PinnedMenu extends Functionality {
 
     @Override
     public void initComponents() {
-        createButtons();
-    }
-
-    @Override
-    public void createButtons() {
+        //create
         Button mainMenu = new Button("main-menu",new Color(200,100,50));
         Button calculator = new Button("calculator",new Color(255,0,255));
         Button metronome = new Button("metronome",new Color(150,50,50));
         Button blockDiagram = new Button("block-diagram",new Color(0,255,255));
-        addButton(mainMenu);
-        addButton(calculator);
-        addButton(metronome);
-        addButton(blockDiagram);
+        //add
+        addButtons(mainMenu,calculator,metronome,blockDiagram);
+        addComponents(mainMenu,calculator,metronome,blockDiagram);
     }
 
     @Override
@@ -52,25 +48,7 @@ public class PinnedMenu extends Functionality {
 
     @Override
     public void putContentTogether() {
-        addButtonsToContainers();
-    }
-
-    @Override
-    public void addButtonsToContainers() {
-        GridBagConstraints gridConstraints = layoutHelper.getGridConstraints();
-
-        container.add(buttons.get(ComponentHandler.MAIN_MENU), gridConstraints);
-        gridConstraints.gridy = 1;
-        container.add(buttons.get(ComponentHandler.CALCULATOR), gridConstraints);
-        gridConstraints.gridy = 2;
-        container.add(buttons.get(ComponentHandler.METRONOME), gridConstraints);
-        gridConstraints.gridy = 3;
-        container.add(buttons.get(ComponentHandler.BLOCK_DIAGRAM), gridConstraints);
-    }
-
-    @Override
-    protected void addButton(Button button){
-        super.addButton(button);
+        layoutHelper.addPinnedMenuComponents(container,components);
     }
 
     private void changeContainerColor(){
