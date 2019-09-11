@@ -10,19 +10,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileHelper {
-
     private final String contentFolderPath = getAbsolutePath() + "/Universal Organizer Files";
-
 
     //TODO:: consider ArrayList of Files instead of single File objects
     //folders
-    private File contentFolder = new File(contentFolderPath);
-    private File tempoDetectorFolder = new File(contentFolderPath + "/Tempo-Detector");
-    private File blockDiagram = new File(contentFolderPath + "/Block-Diagram");
+    private final File contentFolder = new File(contentFolderPath);
+    private final File tempoDetectorFolder = new File(contentFolderPath + "/Tempo-Detector");
+    private final File blockDiagram = new File(contentFolderPath + "/Block-Diagram");
     //text files
-    private File readme = new File(contentFolderPath + "/README.txt");
-    private File organizerConfig = new File(contentFolderPath + "/Organizer-Config.txt");
-    private File tempoDetectorConfig = new File(tempoDetectorFolder +"/TempoDetector-Config.txt");
+    private final File readme = new File(contentFolderPath + "/README.txt");
+    private final File organizerConfig = new File(contentFolderPath + "/Organizer-Config.txt");
+    private final File tempoDetectorConfig = new File(tempoDetectorFolder +"/TempoDetector-Config.txt");
+    //sounds
+    public static final File klackBaseFile = new File(FileHelper.getAbsolutePath() + "/src/resources/sounds/klack-base.wav");
+    public static final File klackNiceFile = new File(FileHelper.getAbsolutePath() + "/src/resources/sounds/klack-nice.wav");
 
     private PrintWriter printWriter;
 
@@ -31,7 +32,9 @@ public class FileHelper {
     public FileHelper(){
         dateHelper = new DateHelper();
     }
-    private String getAbsolutePath(){
+
+    //gets Organizer directory path
+    public static String getAbsolutePath(){
         Path currentRelativePath = Paths.get("");
         return currentRelativePath.toAbsolutePath().toString();
         /*
