@@ -1,47 +1,42 @@
 package Service.Managment;
 
-import FrameComponents.BaseLayer.BaseContainer;
-import FrameComponents.Functionalities.Calculator.Calculator;
-import FrameComponents.Functionalities.MainMenu.MainMenu;
+import FrameComponents.BaseContainer.BaseContainer;
 import FrameComponents.Functionalities.Metronome.Metronome;
 import FrameComponents.Functionalities.PinnedMenu.PinnedMenu;
-import Service.Helpers.LayoutHelper;
+import FrameComponents.Helpers.LayoutHelper;
 import Service.Interfaces.Menu;
 import Service.State.State;
 
 import javax.swing.*;
+import java.awt.*;
 
 /*
-        creates all the functionalities, swaps cards
+        handles functionalities, swaps cards
  */
 public class CardManager implements Menu {
-    private BaseContainer baseContainer = new BaseContainer();
-
-    private JPanel cardContainer;
-
-    //classes that extends class Functionality:
-    //TODO::
-    private Metronome metronome;
-    private MainMenu mainMenu;
-    private Calculator calculator;
+    private ComponentHandler componentHandler = new ComponentHandler(this);
 
     private LayoutHelper layoutHelper = new LayoutHelper();
 
+    private BaseContainer baseContainer = new BaseContainer();
+
+    private JPanel cardContainer;
+    /*
+        //TODO:: more functionalities
+     */
+    private Metronome metronome;
+
 
     public CardManager(){
-        createFunctionalities();
+        metronome = new Metronome();
+
         putContentTogether();
         swapCard("main-menu");
     }
 
-
-    private void createFunctionalities(){
-        metronome = new Metronome();
-    }
-
     private void putContentTogether(){
         setCardContainer();
-        baseContainer.getMetronomeCard().add(metronome.getContainer(),layoutHelper.getGridConstraints());
+        baseContainer.getMetronomeCard().add(metronome.getContainer(),BorderLayout.CENTER);
     }
 
     private void setCardContainer(){
@@ -57,6 +52,10 @@ public class CardManager implements Menu {
         return baseContainer.getContainer();
     }
 
+    public ComponentHandler getComponentHandler(){
+        return componentHandler;
+    }
+
     /*
            getFunctionality methods:
      */
@@ -64,13 +63,8 @@ public class CardManager implements Menu {
         return baseContainer.getPinnedMenu();
     }
 
-    Metronome getMetronome() {
+    public Metronome getMetronome() {
         return metronome;
-    }
-
-    //in future
-    public Calculator getCalculator() {
-        return calculator;
     }
 
 }
