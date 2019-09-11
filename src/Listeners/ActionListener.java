@@ -2,6 +2,7 @@ package Listeners;
 
 import Service.Managment.CardManager;
 import Service.Managment.ComponentHandler;
+import Service.State.State;
 
 import java.awt.event.ActionEvent;
 
@@ -14,27 +15,59 @@ public class ActionListener implements java.awt.event.ActionListener {
     //to acces card swap
     private CardManager cardManager;
 
-    public ActionListener(ComponentHandler componentHandler, CardManager cardManager){
-        this.componentHandler = componentHandler;
+    public ActionListener(CardManager cardManager){
+        this.componentHandler = cardManager.getComponentHandler();
         this.cardManager = cardManager;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        checkMenuButtonClick(e);
+        handlePinnedMenu(e.getSource());
+        if(State.metronomeOpen())
+            handleMetronome(e.getSource());
     }
-    private void checkMenuButtonClick(ActionEvent e){
-        if(e.getSource() == componentHandler.getPinnedMenuButtons().get(ComponentHandler.MAIN_MENU)){
+
+    //pinned menu
+    private void handlePinnedMenu(Object e){
+        if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.MAIN_MENU)){
             cardManager.swapCard("main-menu");
         }
-        else if(e.getSource() == componentHandler.getPinnedMenuButtons().get(ComponentHandler.CALCULATOR)){
+        else if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.CALCULATOR)){
             cardManager.swapCard("calculator");
         }
-        else if(e.getSource() == componentHandler.getPinnedMenuButtons().get(ComponentHandler.METRONOME)){
+        else if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.METRONOME)){
             cardManager.swapCard("metronome");
         }
-        else if(e.getSource() == componentHandler.getPinnedMenuButtons().get(ComponentHandler.BLOCK_DIAGRAM)){
+        else if(e== componentHandler.getPinnedMenuButtons().get(ComponentHandler.BLOCK_DIAGRAM)){
             cardManager.swapCard("block-diagram");
+        }
+    }
+
+    //metronome
+    private void handleMetronome(Object e){
+        //buttons
+        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_PLAY_BUTTON)){
+            cardManager.getMetronome().startTicking();
+        }
+        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_STOP_BUTTON)){
+            cardManager.getMetronome().stopTicking();
+        }
+        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_CLICKER_BUTTON)){
+            cardManager.getMetronome().updateClicker();
+        }
+        //slider
+        if(e == componentHandler.getMetronomeTextField()){
+            componentHandler.getMetronomeSlider().setValue(Integer.parseInt(componentHandler.getMetronomeTextField().getText()));
+        }
+        //radio buttons
+        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_2)){
+            cardManager.getMetronome().setKlackValue(2);
+        }
+        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_3)){
+            cardManager.getMetronome().setKlackValue(3);
+        }
+        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_4)){
+            cardManager.getMetronome().setKlackValue(4);
         }
     }
 }

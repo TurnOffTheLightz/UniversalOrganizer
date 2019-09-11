@@ -3,9 +3,10 @@ package FrameComponents.Functionalities;
 import FrameComponents.Button.Button;
 import FrameComponents.Container.Container;
 import Service.Interfaces.Card;
-import Service.Helpers.LayoutHelper;
+import FrameComponents.Helpers.LayoutHelper;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class Functionality implements Card {
     /*
@@ -13,31 +14,34 @@ public abstract class Functionality implements Card {
      */
     protected JPanel container = new Container();
 
-    protected ArrayList<Button> buttons = new ArrayList<>();
+    private ArrayList<Button> buttons = new ArrayList<>();
+
+    protected ArrayList<JComponent> components = new ArrayList<>();
 
     protected LayoutHelper layoutHelper = new LayoutHelper();
 
-    protected Functionality(){
-
-    }
     /*
        getContainer() gets the whole container and all the objects inside
      */
     public JPanel getContainer(){
         return container;
     }
+
     /*
         passes components to ComponentManager getComponents
      */
     public ArrayList<Button> getButtons(){
         return buttons;
     }
+
     /*
         arraylist
      */
-    protected void addButton(Button button){
-        buttons.add(button);
+    protected void addButtons(Button... buts){
+        buttons.addAll(Arrays.asList(buts));
     }
 
-
+    protected void addComponents(JComponent... comps){
+        components.addAll(Arrays.asList(comps));
+    }
 }

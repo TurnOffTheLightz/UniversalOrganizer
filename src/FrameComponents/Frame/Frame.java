@@ -2,17 +2,16 @@ package FrameComponents.Frame;
 
 import Listeners.ActionListener;
 import FrameComponents.Helpers.MenuBarHelper;
-import Service.Managment.ComponentHandler;
+import Listeners.ChangeListener;
 import Service.Managment.CardManager;
 import Service.Managment.ImageManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-
 public class Frame extends JFrame {
     /*
-    Frame class stores data needed to move between cards(functionalities) in apps
+            Frame class stores data needed to move between cards(functionalities)
 
         maybes:
         -not sure about preinitializing classes with constructor arguments
@@ -20,31 +19,25 @@ public class Frame extends JFrame {
 
     private final Dimension frameSize = new Dimension(800,800);
 
+    private ImageManager imageManager = new ImageManager();
+
     private CardManager cardManager = new CardManager();
 
-    private ComponentHandler componentHandler = new ComponentHandler(cardManager);
+    //todo:: move into card manager
 
-    private ActionListener actionListener = new ActionListener(componentHandler, cardManager);
+    private ActionListener actionListener = new ActionListener(cardManager);
+
+    private ChangeListener changeListener = new ChangeListener(cardManager);
 
     private MenuBarHelper menuBarHelper = new MenuBarHelper();
-
-    /*
-        functionalities:
-        //TODO:: metronome (metronome/tempoDetector)
-        //TODO:: calculator
-        //TODO:: blockDiagram
-        //TODO:: weekPlanner
-     */
-
-    //TODO:: image manager class
-    private ImageManager imageManager = new ImageManager();
 
     public Frame(){
         setFrame();
         setMenuBar();
-        //init buttonshere
+
         addContainer();
         addActionListener();
+        addChangeListener();
     }
 
     public void render(){
@@ -63,10 +56,10 @@ public class Frame extends JFrame {
     private void addContainer(){ this.add(cardManager.getContainer()); }
 
     private void addActionListener(){
-        componentHandler.addActionListener(actionListener);
+        cardManager.getComponentHandler().addActionListener(actionListener);
     }
 
-    //TODO::addChangeListener
+    private void addChangeListener() { cardManager.getComponentHandler().addChangeListener(changeListener);}
 
     private void setFrame(){
         this.setTitle("Universal Organizer v0.1");
