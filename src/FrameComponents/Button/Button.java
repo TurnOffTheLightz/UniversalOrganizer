@@ -19,6 +19,9 @@ public class Button extends JButton {
         super(text);
         this.color = color;
     }
+    public Button(String text){
+        super(text);
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
