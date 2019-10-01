@@ -6,6 +6,8 @@ import FrameComponents.Functionalities.Functionality;
 import java.awt.*;
 
 public class PinnedMenu extends Functionality {
+
+    public static final int MAIN_MENU = 0, CALCULATOR = 1, METRONOME = 2, BLOCK_DIAGRAM = 3;
     /*
         includes:
 
@@ -52,6 +54,6 @@ public class PinnedMenu extends Functionality {
     }
 
     private void changeContainerColor(){
-        container.setBackground(new Color(255,0,255));
+        container.setBackground(new Color(69,93,144));
     }
 }

@@ -20,6 +20,10 @@ import java.util.ArrayList;
 */
 public class Metronome extends Functionality {
     //TODO:: add nice 400x550px metronome graphics, background to panel and buttons
+
+    public static final int METRONOME_PLAY_BUTTON = 0, METRONOME_STOP_BUTTON = 1, METRONOME_CLICKER_BUTTON =2,
+            METRONOME_SLIDER = 3, METRONOME_TEXTFIELD = 4, METRONOME_IMAGE_LABEL = 5, METRONOME_RADIO_BOX = 6;
+    public static final int METRONOME_RADIO_2 = 0, METRONOME_RADIO_3 = 1, METRONOME_RADIO_4 = 2;
     /*
            extend includes:
             protected JPanel container = new Container();
@@ -121,7 +125,7 @@ public class Metronome extends Functionality {
 
     //Graphics
     private void changeContainerColor(){
-        container.setBackground(new Color(143, 150, 137));
+        container.setBackground(new Color(69,90,144));
     }
 
     //SOUND.
