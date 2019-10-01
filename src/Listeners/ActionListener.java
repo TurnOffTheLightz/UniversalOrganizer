@@ -1,5 +1,7 @@
 package Listeners;
 
+import FrameComponents.Functionalities.Metronome.Metronome;
+import FrameComponents.Functionalities.PinnedMenu.PinnedMenu;
 import Service.Managment.CardManager;
 import Service.Managment.ComponentHandler;
 import Service.State.State;
@@ -29,16 +31,16 @@ public class ActionListener implements java.awt.event.ActionListener {
 
     //pinned menu
     private void handlePinnedMenu(Object e){
-        if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.MAIN_MENU)){
+        if(e == componentHandler.getPinnedMenuButtons().get(PinnedMenu.MAIN_MENU)){
             cardManager.swapCard("main-menu");
         }
-        else if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.CALCULATOR)){
+        else if(e == componentHandler.getPinnedMenuButtons().get(PinnedMenu.CALCULATOR)){
             cardManager.swapCard("calculator");
         }
-        else if(e == componentHandler.getPinnedMenuButtons().get(ComponentHandler.METRONOME)){
+        else if(e == componentHandler.getPinnedMenuButtons().get(PinnedMenu.METRONOME)){
             cardManager.swapCard("metronome");
         }
-        else if(e== componentHandler.getPinnedMenuButtons().get(ComponentHandler.BLOCK_DIAGRAM)){
+        else if(e== componentHandler.getPinnedMenuButtons().get(PinnedMenu.BLOCK_DIAGRAM)){
             cardManager.swapCard("block-diagram");
         }
     }
@@ -46,13 +48,13 @@ public class ActionListener implements java.awt.event.ActionListener {
     //metronome
     private void handleMetronome(Object e){
         //buttons
-        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_PLAY_BUTTON)){
+        if(e == componentHandler.getMetronomeButtons().get(Metronome.METRONOME_PLAY_BUTTON)){
             cardManager.getMetronome().startTicking();
         }
-        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_STOP_BUTTON)){
+        if(e == componentHandler.getMetronomeButtons().get(Metronome.METRONOME_STOP_BUTTON)){
             cardManager.getMetronome().stopTicking();
         }
-        if(e == componentHandler.getMetronomeButtons().get(ComponentHandler.METRONOME_CLICKER_BUTTON)){
+        if(e == componentHandler.getMetronomeButtons().get(Metronome.METRONOME_CLICKER_BUTTON)){
             cardManager.getMetronome().updateClicker();
         }
         //slider
@@ -60,13 +62,13 @@ public class ActionListener implements java.awt.event.ActionListener {
             componentHandler.getMetronomeSlider().setValue(Integer.parseInt(componentHandler.getMetronomeTextField().getText()));
         }
         //radio buttons
-        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_2)){
+        if(e == componentHandler.getMetronomeRadioButtons().get(Metronome.METRONOME_RADIO_2)){
             cardManager.getMetronome().setKlackValue(2);
         }
-        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_3)){
+        if(e == componentHandler.getMetronomeRadioButtons().get(Metronome.METRONOME_RADIO_3)){
             cardManager.getMetronome().setKlackValue(3);
         }
-        if(e == componentHandler.getMetronomeRadioButtons().get(ComponentHandler.METRONOME_RADIO_4)){
+        if(e == componentHandler.getMetronomeRadioButtons().get(Metronome.METRONOME_RADIO_4)){
             cardManager.getMetronome().setKlackValue(4);
         }
     }

@@ -12,13 +12,10 @@ public class ComponentHandler {
              ComponentHandler is a class responsible for passing on components (buttons, labels, sliders, etc.)
               mainly used by listeners
      */
-    public static final int MAIN_MENU = 0, CALCULATOR = 1, METRONOME = 2, BLOCK_DIAGRAM = 3;
-    public static final int METRONOME_PLAY_BUTTON = 0, METRONOME_STOP_BUTTON = 1, METRONOME_CLICKER_BUTTON = 2;
-    public static final int METRONOME_RADIO_2 = 0, METRONOME_RADIO_3 = 1, METRONOME_RADIO_4 = 2;
 
     private CardManager cardManager;
 
-    public ComponentHandler(CardManager cardManager){
+    ComponentHandler(CardManager cardManager){
         this.cardManager = cardManager;
     }
 
