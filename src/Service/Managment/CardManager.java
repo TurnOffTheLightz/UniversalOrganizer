@@ -1,6 +1,7 @@
 package Service.Managment;
 
 import FrameComponents.BaseContainer.BaseContainer;
+import FrameComponents.Functionalities.Calculator.Calculator;
 import FrameComponents.Functionalities.Metronome.Metronome;
 import FrameComponents.Functionalities.PinnedMenu.PinnedMenu;
 import FrameComponents.Helpers.LayoutHelper;
@@ -25,10 +26,12 @@ public class CardManager implements Menu {
         //TODO:: more functionalities
      */
     private Metronome metronome;
+    private Calculator calculator;
 
 
     public CardManager(){
         metronome = new Metronome();
+        calculator = new Calculator();
 
         putContentTogether();
         swapCard("main-menu");
@@ -37,6 +40,7 @@ public class CardManager implements Menu {
     private void putContentTogether(){
         setCardContainer();
         baseContainer.getMetronomeCard().add(metronome.getContainer(),BorderLayout.CENTER);
+        baseContainer.getCalculatorCard().add(calculator.getContainer(),BorderLayout.CENTER);
     }
 
     private void setCardContainer(){

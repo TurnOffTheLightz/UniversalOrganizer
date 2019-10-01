@@ -51,6 +51,7 @@ public class BaseContainer implements Card {
 
         //todo:: set layouts inside all cards, probably all border layout
         metronomeCard.setLayout(new BorderLayout());
+        calculatorCard.setLayout(new BorderLayout());
     }
 
     @Override
@@ -76,6 +77,10 @@ public class BaseContainer implements Card {
     public JPanel getContainer() { return baseContainer; }
 
     public JPanel getMetronomeCard() { return metronomeCard; }
+
+    public JPanel getCalculatorCard(){
+        return calculatorCard;
+    }
 
     //TODO:: replace colors with graphics?
     private void changeContainerColors() {
